@@ -11,29 +11,28 @@ public class CalcSoapClient extends WebServiceGatewaySupport {
     private final String soapActionCallbackBaseUrl;
 
     public CalcSoapClient(String soapUrl, String soapActionCallbackBaseUrl) {
-
         this.soapUrl = soapUrl;
         this.soapActionCallbackBaseUrl = soapActionCallbackBaseUrl;
     }
 
     public Integer doOperation(CalcOperation operation, int a, int b) {
         switch (operation){
-            case Add:
+            case add:
                 final Add add = new Add();
                 add.setIntA(a);
                 add.setIntB(b);
                 return sendAndReceive(AddResponse.class, add).getAddResult();
-            case Divide:
+            case divide:
                 final Divide divide = new Divide();
                 divide.setIntA(a);
                 divide.setIntB(b);
                 return sendAndReceive(DivideResponse.class, divide).getDivideResult();
-            case Multiply:
+            case multiply:
                 final Multiply multiply = new Multiply();
                 multiply.setIntA(a);
                 multiply.setIntB(b);
                 return sendAndReceive(MultiplyResponse.class, multiply).getMultiplyResult();
-            case Subtract:
+            case subtract:
                 final Subtract subtract = new Subtract();
                 subtract.setIntA(a);
                 subtract.setIntB(b);
@@ -47,7 +46,11 @@ public class CalcSoapClient extends WebServiceGatewaySupport {
     private <T,D> T sendAndReceive(Class<T> responseClass, D requestPayload){
         return (T) getWebServiceTemplate()
                 .marshalSendAndReceive(soapUrl, requestPayload, new SoapActionCallback(
-                        soapActionCallbackBaseUrl + requestPayload.getClass().getSimpleName()
+                        soapActionCallbackBaseUrl + toCapital(requestPayload.getClass().getSimpleName())
                 ));
+    }
+
+    private String toCapital(String message){
+        return message.substring(0, 1).toUpperCase() + message.substring(1);
     }
 }
