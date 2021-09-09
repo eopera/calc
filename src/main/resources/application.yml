@@ -2,6 +2,10 @@ app:
   soap:
     url: http://www.dneonline.com/calculator.asmx
     action-callback-base-url: http://tempuri.org/
+server:
+  error:
+    whitelabel:
+      enabled: false
 springdoc:
   api-docs:
     path: /api
