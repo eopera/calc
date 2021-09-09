@@ -1,8 +1,7 @@
 package com.filatov.calc.rest.exception;
 
 import com.filatov.calc.model.CalcOperation;
-import lombok.NonNull;
-import org.springframework.beans.factory.annotation.Value;
+import com.filatov.calc.service.ApiDocUrlsService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,18 +19,10 @@ import java.util.Arrays;
 @RestControllerAdvice
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
-    private final String seeApiDocMessage;
+    private final ApiDocUrlsService apiDocUrlsService;
 
-    public RestExceptionHandler(
-                                 @Value("${springdoc.api-docs.path}")  String springDocPath,
-                                 @Value("${springdoc.swagger-ui.path}") String swaggerUiPath) {
-        this.seeApiDocMessage = setSeeApiDocMessage(springDocPath, swaggerUiPath);
-    }
-
-    private String setSeeApiDocMessage(@NonNull String springDocPath, @NonNull String swaggerUiPath) {
-        return "Read Open-Api documentation on " + springDocPath + " or " +
-                springDocPath + ".yaml" +
-                " or you may see swagger page on " + swaggerUiPath + " path";
+    public RestExceptionHandler(ApiDocUrlsService apiDocUrlsService) {
+        this.apiDocUrlsService = apiDocUrlsService;
     }
 
     @ExceptionHandler({ MethodArgumentTypeMismatchException.class })
@@ -51,7 +42,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return ErrorResponse.builder()
                 .message("Bad request. Try another one!")
                 .detail(detail)
-                .detail(seeApiDocMessage)
+                .detail(apiDocUrlsService.getWhereToSeeApiDoc())
                 .build();
     }
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
@@ -69,7 +60,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         String errorMessage = "No such url was found: " + ex.getRequestURL();
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ErrorResponse.builder()
                 .message(errorMessage)
-                .detail(seeApiDocMessage)
+                .detail(apiDocUrlsService.getWhereToSeeApiDoc())
                 .build());
     }
 
