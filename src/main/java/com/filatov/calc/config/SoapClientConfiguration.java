@@ -12,7 +12,7 @@ public class SoapClientConfiguration {
         Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
         // this package must match the package in the <generatePackage> specified in
         // pom.xml
-        marshaller.setContextPath("com.filatov.calc.wsdl");
+        marshaller.setContextPath("com.filatov.calc.model.wsdl"); //нехорошо, что строчка здесь
         return marshaller;
     }
 

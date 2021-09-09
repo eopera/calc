@@ -1,7 +1,7 @@
 package com.filatov.calc.service;
 
+import com.filatov.calc.model.wsdl.AddResponse;
 import com.filatov.calc.service.soap.CalcSoapClient;
-import com.filatov.calc.wsdl.AddResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

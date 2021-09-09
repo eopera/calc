@@ -1,7 +1,7 @@
 package com.filatov.calc.service.soap;
 
-import com.filatov.calc.wsdl.Add;
-import com.filatov.calc.wsdl.AddResponse;
+import com.filatov.calc.model.wsdl.Add;
+import com.filatov.calc.model.wsdl.AddResponse;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
 
