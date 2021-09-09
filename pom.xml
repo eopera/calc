@@ -10,11 +10,13 @@
 	</parent>
 	<groupId>com.filatov</groupId>
 	<artifactId>calc</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0</version>
 	<name>calc</name>
 	<description>Test task </description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>8</java.version>
+		<fabric8.version>4.4.1</fabric8.version>
+<!--		<openapi-generator-maven-plugin.version>5.1.0</openapi-generator-maven-plugin.version>-->
 	</properties>
 	<dependencies>
 		<dependency>
@@ -27,9 +29,26 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.20</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-runtime</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.5.2</version>
 		</dependency>
 	</dependencies>
 
@@ -38,6 +57,68 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
+				<version>${maven-deploy-plugin.version}</version>
+				<executions>
+					<execution>
+						<id>default-deploy</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>io.fabric8</groupId>
+				<artifactId>fabric8-maven-plugin</artifactId>
+				<version>${fabric8.version}</version>
+				<executions>
+<!--					<execution>-->
+<!--						<id>fmp</id>-->
+<!--						<goals>-->
+<!--							<goal>resource</goal>-->
+<!--							<goal>build</goal>-->
+<!--						</goals>-->
+<!--					</execution>-->
+					<execution>
+						<id>default-deploy</id>
+						<phase>deploy</phase>
+						<goals>
+							<goal>resource</goal>
+							<goal>build</goal>
+							<goal>deploy</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.jvnet.jaxb2.maven2</groupId>
+				<artifactId>maven-jaxb2-plugin</artifactId>
+				<version>0.14.0</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<schemaLanguage>WSDL</schemaLanguage>
+					<generatePackage>com.filatov.calc.model.wsdl</generatePackage>
+					<schemas>
+						<schema>
+							<url>http://dneonline.com/calculator.asmx?WSDL</url>
+						</schema>
+					</schemas>
+					<forceRegenerate>false</forceRegenerate>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
