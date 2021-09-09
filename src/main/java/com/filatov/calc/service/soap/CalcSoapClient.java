@@ -5,6 +5,8 @@ import com.filatov.calc.model.wsdl.*;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
 
+import static com.filatov.calc.util.StringHelper.toCapital;
+
 public class CalcSoapClient extends WebServiceGatewaySupport {
 
     private final String soapUrl;
@@ -48,9 +50,5 @@ public class CalcSoapClient extends WebServiceGatewaySupport {
                 .marshalSendAndReceive(soapUrl, requestPayload, new SoapActionCallback(
                         soapActionCallbackBaseUrl + toCapital(requestPayload.getClass().getSimpleName())
                 ));
-    }
-
-    private String toCapital(String message){
-        return message.substring(0, 1).toUpperCase() + message.substring(1);
     }
 }
