@@ -6,3 +6,8 @@
 Spring boot, Maven, Minishift (windows, Hyper-V).
 
 Для deploy в openshift использовался Maven plugin плагин fabric8-maven-plugin
+
+## Deploy на OpenShift (Minishift)
+Для деполя используйте команду maven:
+``` mvn deploy ```
+
