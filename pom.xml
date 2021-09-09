@@ -16,6 +16,7 @@
 	<properties>
 		<java.version>8</java.version>
 		<fabric8.version>4.4.1</fabric8.version>
+<!--		<openapi-generator-maven-plugin.version>5.1.0</openapi-generator-maven-plugin.version>-->
 	</properties>
 	<dependencies>
 		<dependency>
@@ -84,7 +85,7 @@
 				</executions>
 				<configuration>
 					<schemaLanguage>WSDL</schemaLanguage>
-					<generatePackage>com.filatov.calc.wsdl</generatePackage>
+					<generatePackage>com.filatov.calc.model.wsdl</generatePackage>
 					<schemas>
 						<schema>
 							<url>http://dneonline.com/calculator.asmx?WSDL</url>
@@ -93,6 +94,33 @@
 					<forceRegenerate>false</forceRegenerate>
 				</configuration>
 			</plugin>
+<!--			<plugin>-->
+<!--				&lt;!&ndash;-->
+<!--                    Plugin that provides API-first development using openapi-generator to-->
+<!--                    generate Spring-MVC endpoint stubs at compile time from an OpenAPI definition file-->
+<!--                &ndash;&gt;-->
+<!--				<groupId>org.openapitools</groupId>-->
+<!--				<artifactId>openapi-generator-maven-plugin</artifactId>-->
+<!--				<version>${openapi-generator-maven-plugin.version}</version>-->
+<!--				<executions>-->
+<!--					<execution>-->
+<!--						<goals>-->
+<!--							<goal>generate</goal>-->
+<!--						</goals>-->
+<!--						<configuration>-->
+<!--							<inputSpec>${project.basedir}/src/main/resources/open-api/api.yml</inputSpec>-->
+<!--							<generatorName>spring</generatorName>-->
+<!--							<apiPackage>com.filatov.calc.rest.api</apiPackage>-->
+<!--							<modelPackage>com.filatov.model.rest.api</modelPackage>-->
+<!--							<supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>-->
+<!--							<skipValidateSpec>false</skipValidateSpec>-->
+<!--							<configOptions>-->
+<!--								<delegatePattern>true</delegatePattern>-->
+<!--							</configOptions>-->
+<!--						</configuration>-->
+<!--					</execution>-->
+<!--				</executions>-->
+<!--			</plugin>-->
 		</plugins>
 	</build>
 
