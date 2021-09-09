@@ -10,14 +10,20 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 @SpringBootTest
-public class SoapClientTest {
+public class SoapClientIntTest {
 
     @Autowired
     private  CalcSoapClient client;
 
     @Test
     void request(){
-        final AddResponse addResponse = client.doAdd(1, 2);
-        assertThat(addResponse.getAddResult(), equalTo(3));
+//        final AddResponse addResponse = client.doOperation("Add", 1, 2);
+//        assertThat(addResponse.getAddResult(), equalTo(3));
+    }
+
+    @Test
+    void unsupportedOperation(){
+//        final AddResponse addResponse = client.doOperation("BadOperation", 1, 2);
+//        assertThat(addResponse.getAddResult(), equalTo(3));
     }
 }

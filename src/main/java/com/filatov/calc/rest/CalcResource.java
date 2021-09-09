@@ -4,8 +4,10 @@ import com.filatov.calc.model.CalcOperation;
 import com.filatov.calc.service.soap.CalcSoapClient;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/do")
@@ -25,10 +27,7 @@ public class CalcResource {
         return calcSoapClient.doOperation(operation, intA, intB);
     }
 
-    @ExceptionHandler(MethodArgumentTypeMismatchException.class)
-    public void handleException() {
 
-    }
 
 
 }
