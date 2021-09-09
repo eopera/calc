@@ -7,6 +7,10 @@ import org.springframework.ws.soap.client.core.SoapActionCallback;
 
 import static com.filatov.calc.util.StringHelper.toCapital;
 
+/**
+ * Класс для вызова методов SOAP веб-сервиса
+ * Фиксированный список возможных названий методов см enum {@link CalcOperation}
+ */
 public class CalcSoapClient extends WebServiceGatewaySupport {
 
     private final String soapUrl;

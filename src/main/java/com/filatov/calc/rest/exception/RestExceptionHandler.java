@@ -1,7 +1,6 @@
 package com.filatov.calc.rest.exception;
 
 import com.filatov.calc.model.CalcOperation;
-import com.filatov.calc.service.soap.CalcSoapClient;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
@@ -41,7 +40,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
             MethodArgumentTypeMismatchException ex, WebRequest request) {
         String detail;
         if(ex.getName().equals("operation")){
-            detail = "Operation should be one of values: " + Arrays.toString(CalcOperation.values());
+            detail = "Operation should be one of: " + Arrays.toString(CalcOperation.values());
         }
         else if(ex.getName().startsWith("intA") || ex.getName().startsWith("intB")){
             detail = (ex.getName().equals("intA") ? "Left" : "Right") + " operand must be integer number";

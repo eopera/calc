@@ -26,8 +26,4 @@ public class CalcResource {
             @Parameter(description = "right operand") @PathVariable Integer intB) {
         return calcSoapClient.doOperation(operation, intA, intB);
     }
-
-
-
-
 }
