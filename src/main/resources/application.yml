@@ -1,0 +1,9 @@
+app:
+  soap:
+    url: http://www.dneonline.com/calculator.asmx
+    action-callback-base-url: http://tempuri.org/
+springdoc:
+  api-docs:
+    path: /api
+  swagger-ui:
+    path: /swagger.html
