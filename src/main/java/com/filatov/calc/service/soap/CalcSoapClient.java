@@ -2,6 +2,7 @@ package com.filatov.calc.service.soap;
 
 import com.filatov.calc.model.CalcOperation;
 import com.filatov.calc.model.wsdl.*;
+import lombok.NonNull;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import org.springframework.ws.soap.client.core.SoapActionCallback;
 
@@ -21,7 +22,7 @@ public class CalcSoapClient extends WebServiceGatewaySupport {
         this.soapActionCallbackBaseUrl = soapActionCallbackBaseUrl;
     }
 
-    public Integer doOperation(CalcOperation operation, int a, int b) {
+    public int doOperation(@NonNull CalcOperation operation, int a, int b) {
         switch (operation){
             case add:
                 final Add add = new Add();

@@ -63,6 +63,4 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
                 .detail(apiDocUrlsService.getWhereToSeeApiDoc())
                 .build());
     }
-
-
 }
