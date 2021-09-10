@@ -7,4 +7,8 @@ public class StringHelper {
     public static String toCapital(String message){
         return message.substring(0, 1).toUpperCase() + message.substring(1);
     }
+
+    public static boolean isInteger(String str){
+        return str.matches("-?\\d+");
+    }
 }
